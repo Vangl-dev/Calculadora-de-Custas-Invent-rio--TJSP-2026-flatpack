@@ -1,0 +1,26 @@
+app-id: com.calculadora.custas
+runtime: org.freedesktop.Platform
+runtime-version: "23.08"
+sdk: org.freedesktop.Sdk
+command: /app/webapp.sh
+
+finish-args:
+  - --share=network
+  - --socket=x11
+  - --socket=wayland
+
+modules:
+  - name: calculadora-custas
+    buildsystem: simple
+    build-commands:
+      - install -D index.html /app/index.html
+      - install -D calculo.js /app/calculo.js
+      - install -D webapp.sh /app/webapp.sh
+      - chmod +x /app/webapp.sh
+    sources:
+      - type: file
+        path: index.html
+      - type: file
+        path: calculo.js
+      - type: file
+        path: webapp.sh

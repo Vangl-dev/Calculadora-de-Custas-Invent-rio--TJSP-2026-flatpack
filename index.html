@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Despesas Jurídicas SP - 2026</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+        }
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        label { font-weight: bold; margin-top: 10px; display: block; }
+        input, button, select {
+            display: block;
+            width: 100%;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        button:hover { background-color: #34495e; }
+        .resultado {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #3498db;
+            border-left: 5px solid #3498db;
+            background-color: #ecf0f1;
+            border-radius: 4px;
+        }
+        .resultado p { margin: 8px 0; font-size: 1.05em; }
+        .info-ufesp { font-size: 0.85em; color: #666; margin-top: -10px; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <h2>⚖️ Calculadora de Despesas (SP - 2026)</h2>
+    <p style="text-align: center; color: #666;">Inventário, Divórcio e Partilha de Bens</p>
+
+    <label for="tipoAcao">Modalidade:</label>
+    <select id="tipoAcao">
+        <option value="judicial">Via Judicial (Fórum - TJSP)</option>
+        <option value="extrajudicial">Via Extrajudicial (Cartório de Notas)</option>
+    </select>
+
+    <label for="valorBens">Valor Total dos Bens (R$):</label>
+    <input type="number" id="valorBens" placeholder="Ex: 500000.00" step="0.01" min="0">
+
+    <label for="ufesp">Valor da UFESP 2026:</label>
+    <input type="number" id="ufesp" value="38.42" readonly>
+    <p class="info-ufesp">Valor vigente em SP conforme Sefaz-SP para o exercício de 2026.</p>
+
+    <button onclick="calcularCustas()">Calcular Estimativa</button>
+
+    <div id="resultado" class="resultado" style="display:none;">
+        <h3>Resumo de Custas Estimadas</h3>
+        <p><strong>ITCMD (Imposto - 4%):</strong> <span id="itcmd-valor"></span></p>
+        <p id="box-judicial"><strong>Taxa Judiciária (TJSP):</strong> <span id="custas-judiciais-valor"></span></p>
+        <p id="box-extrajudicial"><strong>Emolumentos (Escritura):</strong> <span id="emolumentos-valor"></span></p>
+        <hr>
+        <p><strong>Total Estimado:</strong> <span id="total-estimado" style="color: #c0392b; font-weight: bold;"></span></p>
+        <p style="font-size: 0.8em; color: #555; margin-top: 15px;">
+            * Nota: O ITCMD em SP pode sofrer alteração para alíquotas progressivas (2% a 8%) caso o PL 7/2024 seja plenamente aplicado. Os cálculos de cartório são baseados na Tabela I de 2026.
+        </p>
+    </div>
+
+    <script src="calculo.js"></script>
+</body>
+</html>
